@@ -16,7 +16,7 @@ const schema = Joi.object({
   RType: Joi.string().min(2).max(2),
 });
 router.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("hello world!!!!!!!!!!!!!!");
 });
 
 router.get("/api/restaurants", (req, res) => {
