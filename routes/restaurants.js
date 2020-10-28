@@ -16,10 +16,6 @@ const schema = Joi.object({
   RType: Joi.string().min(2).max(2),
 });
 router.get("/", (req, res) => {
-  res.send("hello world!!!!!!!");
-});
-
-router.get("/api/restaurants", (req, res) => {
   (async () => {
     let testClient;
     try {
@@ -45,6 +41,10 @@ router.get("/api/restaurants", (req, res) => {
       testClient.close();
     }
   })();
+});
+
+router.get("/api/restaurants", (req, res) => {
+  res.send("hello world!!!!!!!");
 });
 
 router.get("/api/restaurants/:rId", (req, resp) => {
