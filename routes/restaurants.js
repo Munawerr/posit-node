@@ -19,15 +19,12 @@ router.get("/", (req, res) => {
   (async () => {
     let testClient;
     try {
-      testClient = await MongoClient.connect(
-        "mongodb+srv://DevMunawer:NdzgmqYHqR7F1XUX@food-city-cluster.dx9lm.gcp.mongodb.net/sample_restaurants?retryWrites=true&w=majority",
-        {
-          connectTimeoutMS: 200,
-          retryWrites: true,
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        }
-      );
+      testClient = await MongoClient.connect(process.env.mongoCredi, {
+        connectTimeoutMS: 200,
+        retryWrites: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 
       const dataBase = testClient.db("sample_restaurants");
 
