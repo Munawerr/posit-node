@@ -30,10 +30,13 @@ router.get("/", (req, res) => {
 
       const Restaurants = dataBase.collection("restaurants");
 
-      const restaurant = await Restaurants.find({
-        borough: "Brooklyn",
-        cuisine: "American",
-      }).toArray();
+      const restaurant = await Restaurants.find(
+        {
+          borough: "Brooklyn",
+          cuisine: "American",
+        },
+        { limit: 5 }
+      ).toArray();
       res.send(restaurant);
     } catch (e) {
       console.error(e);
