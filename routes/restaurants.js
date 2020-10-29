@@ -4,7 +4,8 @@ require("dotenv/config");
 const MongoClient = require("mongodb").MongoClient;
 var bodyParser = require("body-parser");
 const Joi = require("joi");
-
+const URI =
+  "mongodb+srv://DevMunawer:NdzgmqYHqR7F1XUX@food-city-cluster.dx9lm.gcp.mongodb.net/sample_restaurants?retryWrites=true&w=majority";
 // create application/json parser
 var jsonParser = bodyParser.json();
 const RestModal = require("../models/rest");
@@ -23,7 +24,7 @@ router.get("/api/restaurants", (req, res) => {
   (async () => {
     let testClient;
     try {
-      testClient = await MongoClient.connect(process.env.MONGOODB_URI, {
+      testClient = await MongoClient.connect(URI, {
         connectTimeoutMS: 200,
         retryWrites: true,
         useNewUrlParser: true,
