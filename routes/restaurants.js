@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 require("dotenv/config");
+const mongoose = require("mongoose");
 const MongoClient = require("mongodb").MongoClient;
 var bodyParser = require("body-parser");
 const Joi = require("joi");
@@ -18,35 +19,60 @@ router.get("/", (req, res) => {
   res.send("hello world!!!!!!!");
 });
 
-router.get("/api/restaurants", (req, res) => {
-  (async () => {
-    let testClient;
-    try {
-      testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-        connectTimeoutMS: 200,
-        retryWrites: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+router.get("/api/restaurants", async (req, res) => {
+  mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    retryWrites: true,
+    connectTimeoutMS: 200,
+  });
+  const client = mongoose.connection;
+  mongoose.connection.once("open", () => {
+    console.log("MongoDB Connected");
+  });
+  mongoose.connection.on("error", (err) => {
+    console.log("MongoDB connection error: ", err);
+  });
+  const dataBase = client.db("sample_restaurants");
 
-      const dataBase = testClient.db("sample_restaurants");
+  const Restaurants = dataBase.collection("restaurants");
 
-      const Restaurants = dataBase.collection("restaurants");
+  const restaurant = await Restaurants.find(
+    {
+      borough: "Brooklyn",
+      cuisine: "American",
+    },
+    { limit: 5 }
+  ).toArray();
+  res.send(restaurant);
+  client.close();
 
-      const restaurant = await Restaurants.find(
-        {
-          borough: "Brooklyn",
-          cuisine: "American",
-        },
-        { limit: 5 }
-      ).toArray();
-      res.send(restaurant);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      testClient.close();
-    }
-  })();
+  // let testClient;
+  // try {
+  //   testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+  //     connectTimeoutMS: 200,
+  //     retryWrites: true,
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //   });
+
+  //   const dataBase = testClient.db("sample_restaurants");
+
+  //   const Restaurants = dataBase.collection("restaurants");
+
+  //   const restaurant = await Restaurants.find(
+  //     {
+  //       borough: "Brooklyn",
+  //       cuisine: "American",
+  //     },
+  //     { limit: 5 }
+  //   ).toArray();
+  //   res.send(restaurant);
+  // } catch (e) {
+  //   console.error(e);
+  // } finally {
+  //   testClient.close();
+  // }
 });
 
 router.get("/api/restaurants/:rId", (req, resp) => {
