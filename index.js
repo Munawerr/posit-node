@@ -7,6 +7,5 @@ const port = process.env.PORT || 8080;
 const restRoutes = require("./routes/restaurants");
 
 app.use("/", restRoutes);
-app.use("/api/restaurants", restRoutes);
 
 app.listen(port, () => console.log(`Listenting to Port ${port}...`));
