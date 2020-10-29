@@ -23,7 +23,7 @@ router.get("/api/restaurants", (req, res) => {
   (async () => {
     let testClient;
     try {
-      testClient = await MongoClient.connect(process.env.mongoodb_uri, {
+      testClient = await MongoClient.connect(process.env.MONGOODB_URI, {
         connectTimeoutMS: 200,
         retryWrites: true,
         useNewUrlParser: true,
@@ -54,7 +54,7 @@ router.get("/api/restaurants/:rId", (req, resp) => {
   (async () => {
     let testClient;
     try {
-      testClient = await MongoClient.connect(process.env.mongoodb_uri, {
+      testClient = await MongoClient.connect(process.env.MONGOODB_URI, {
         connectTimeoutMS: 200,
         retryWrites: true,
         useNewUrlParser: true,
@@ -88,7 +88,7 @@ router.post("/api/restaurants", jsonParser, async (req, resp) => {
   );
 
   try {
-    testClient = await MongoClient.connect(process.env.mongoodb_uri, {
+    testClient = await MongoClient.connect(process.env.MONGOODB_URI, {
       connectTimeoutMS: 200,
       retryWrites: true,
       useNewUrlParser: true,
@@ -111,7 +111,7 @@ router.post("/api/restaurants", jsonParser, async (req, resp) => {
 router.put("/api/restaurants/:rId", jsonParser, async (req, resp) => {
   // get Restaurant by Id
   try {
-    testClient = await MongoClient.connect(process.env.mongoodb_uri, {
+    testClient = await MongoClient.connect(process.env.MONGOODB_URI, {
       connectTimeoutMS: 200,
       retryWrites: true,
       useNewUrlParser: true,
@@ -170,7 +170,7 @@ router.put("/api/restaurants/:rId", jsonParser, async (req, resp) => {
 router.delete("/api/restaurants/:rId", jsonParser, async (req, resp) => {
   // get Restaurant by Id
   try {
-    testClient = await MongoClient.connect(process.env.mongoodb_uri, {
+    testClient = await MongoClient.connect(process.env.MONGOODB_URI, {
       connectTimeoutMS: 200,
       retryWrites: true,
       useNewUrlParser: true,
