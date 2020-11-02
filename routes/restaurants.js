@@ -51,7 +51,7 @@ router.get("/api/restaurants/:rId", (req, resp) => {
   (async () => {
     let Client;
     try {
-      testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+      Client = await MongoClient.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -84,13 +84,14 @@ router.post("/api/restaurants", jsonParser, (req, resp) => {
     req.body.restaurant_id
   );
   (async () => {
+    let Client;
     try {
-      testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+      Client = await MongoClient.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
 
-      const dataBase = testClient.db("sample_restaurants");
+      const dataBase = Client.db("sample_restaurants");
 
       const Restaurants = dataBase.collection("restaurants");
 
@@ -99,7 +100,7 @@ router.post("/api/restaurants", jsonParser, (req, resp) => {
     } catch (e) {
       console.error(e);
     } finally {
-      testClient.close();
+      Client.close();
     }
   })().catch((error) => {
     res.send(`An Error Occured \n\n${error}`);
@@ -109,13 +110,14 @@ router.post("/api/restaurants", jsonParser, (req, resp) => {
 router.put("/api/restaurants/:rId", jsonParser, (req, resp) => {
   (async () => {
     // get Restaurant by Id
+    let Client;
     try {
-      testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+      Client = await MongoClient.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
 
-      const dataBase = testClient.db("sample_restaurants");
+      const dataBase = Client.db("sample_restaurants");
 
       const Restaurants = dataBase.collection("restaurants");
 
@@ -160,7 +162,7 @@ router.put("/api/restaurants/:rId", jsonParser, (req, resp) => {
     } catch (e) {
       console.error(e);
     } finally {
-      testClient.close();
+      Client.close();
     }
   })().catch((error) => {
     resp.send(`An Error Occured \n\n${error}`);
@@ -170,13 +172,14 @@ router.put("/api/restaurants/:rId", jsonParser, (req, resp) => {
 router.delete("/api/restaurants/:rId", jsonParser, (req, resp) => {
   (async () => {
     // get Restaurant by Id
+    let Client;
     try {
-      testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+      Client = await MongoClient.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
 
-      const dataBase = testClient.db("sample_restaurants");
+      const dataBase = Client.db("sample_restaurants");
 
       const Restaurants = dataBase.collection("restaurants");
 
@@ -188,7 +191,7 @@ router.delete("/api/restaurants/:rId", jsonParser, (req, resp) => {
     } catch (e) {
       console.error(e);
     } finally {
-      testClient.close();
+      Client.close();
     }
   })().catch(() => {
     resp.send(`An Error Occured \n\n${error}`);
