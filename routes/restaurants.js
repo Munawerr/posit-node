@@ -74,7 +74,7 @@ router.get("/api/restaurants", (req, res) => {
     } finally {
       Client.close();
     }
-  })().catch(error, () => {
+  })().catch((error) => {
     res.send(`An Error Occured \n\n${error}`);
   });
 });
