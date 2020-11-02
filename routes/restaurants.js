@@ -52,31 +52,31 @@ router.get("/api/restaurants", (req, res) => {
   // } finally {
   //   mongoose.connection.close();
   // }
-  // (async () => {
-  let Client;
-  try {
-    Client = MongoClient.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+  (async () => {
+    let Client;
+    try {
+      Client = await MongoClient.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 
-    const dataBase = Client.db("sample_restaurants");
+      const dataBase = Client.db("sample_restaurants");
 
-    const Restaurants = dataBase.collection("restaurants");
+      const Restaurants = dataBase.collection("restaurants");
 
-    const restaurant = Restaurants.find({
-      borough: "Brooklyn",
-      cuisine: "American",
-    }).toArray();
-    res.send(restaurant);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    Client.close();
-  }
-  // })().catch(error, () => {
-  //   res.send(`An Error Occured \n\n${error}`);
-  // });
+      const restaurant = await Restaurants.find({
+        borough: "Brooklyn",
+        cuisine: "American",
+      }).toArray();
+      res.send(restaurant);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      Client.close();
+    }
+  })().catch(error, () => {
+    res.send(`An Error Occured \n\n${error}`);
+  });
 });
 
 router.get("/api/restaurants/:rId", (req, resp) => {
