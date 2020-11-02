@@ -56,13 +56,9 @@ router.get("/api/restaurants", (req, res) => {
   let testClient;
   try {
     testClient = MongoClient.connect(process.env.MONGODB_URI, {
-      connectTimeoutMS: 200,
-      retryWrites: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    console.log("is try running");
 
     const dataBase = testClient.db("sample_restaurants");
 
@@ -74,10 +70,8 @@ router.get("/api/restaurants", (req, res) => {
     }).toArray();
     res.send(restaurant);
   } catch (e) {
-    console.log("is error!");
     console.error(e);
   } finally {
-    console.log("is finally running");
     testClient.close();
   }
   // })().catch(error, () => {
