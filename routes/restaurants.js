@@ -52,8 +52,6 @@ router.get("/api/restaurants/:rId", (req, resp) => {
     let Client;
     try {
       testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-        connectTimeoutMS: 200,
-        retryWrites: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -88,8 +86,6 @@ router.post("/api/restaurants", jsonParser, (req, resp) => {
   (async () => {
     try {
       testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-        connectTimeoutMS: 200,
-        retryWrites: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -115,8 +111,6 @@ router.put("/api/restaurants/:rId", jsonParser, (req, resp) => {
     // get Restaurant by Id
     try {
       testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-        connectTimeoutMS: 200,
-        retryWrites: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -178,8 +172,6 @@ router.delete("/api/restaurants/:rId", jsonParser, (req, resp) => {
     // get Restaurant by Id
     try {
       testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-        connectTimeoutMS: 200,
-        retryWrites: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
