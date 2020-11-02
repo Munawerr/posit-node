@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   res.send({
     API_Name: "POSIT-NODE",
     API_TYPE: "Test",
-    version: v52,
+    version: "v52",
     Docs: "https://github.com/Munawerr/posit-node",
     Developed_By: "Munawer",
     Developer_Profile: "https://github.com/Munawerr",
