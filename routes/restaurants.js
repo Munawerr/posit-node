@@ -53,14 +53,14 @@ router.get("/api/restaurants", (req, res) => {
   //   mongoose.connection.close();
   // }
   // (async () => {
-  let testClient;
+  let Client;
   try {
-    testClient = MongoClient.connect(process.env.MONGODB_URI, {
+    Client = MongoClient.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
 
-    const dataBase = testClient.db("sample_restaurants");
+    const dataBase = Client.db("sample_restaurants");
 
     const Restaurants = dataBase.collection("restaurants");
 
@@ -72,7 +72,7 @@ router.get("/api/restaurants", (req, res) => {
   } catch (e) {
     console.error(e);
   } finally {
-    testClient.close();
+    Client.close();
   }
   // })().catch(error, () => {
   //   res.send(`An Error Occured \n\n${error}`);
