@@ -53,9 +53,9 @@ router.get("/api/restaurants", (req, res) => {
   //   mongoose.connection.close();
   // }
   // (async () => {
-  global.testClient;
+  let testClient;
   try {
-    global.testClient = MongoClient.connect(process.env.MONGODB_URI, {
+    testClient = MongoClient.connect(process.env.MONGODB_URI, {
       connectTimeoutMS: 200,
       retryWrites: true,
       useNewUrlParser: true,
@@ -78,7 +78,7 @@ router.get("/api/restaurants", (req, res) => {
     console.error(e);
   } finally {
     console.log("is finally running");
-    global.testClient.close();
+    testClient.close();
   }
   // })().catch(error, () => {
   //   res.send(`An Error Occured \n\n${error}`);
