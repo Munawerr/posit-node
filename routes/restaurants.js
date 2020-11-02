@@ -20,38 +20,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/api/restaurants", (req, res) => {
-  // try {
-  //   mongoose.connect(process.env.mongoCredi, {
-  //     useNewUrlParser: true,
-  //     useUnifiedTopology: true,
-  //     retryWrites: true,
-  //     connectTimeoutMS: 200,
-  //   });
-
-  //   const Schema = mongoose.Schema;
-  //   const BookSchema = new Schema({
-  //     name: String,
-  //   });
-
-  //   const Model = mongoose.model;
-  //   const Book = Model("Books", BookSchema);
-
-  //   const NodeJsGuide = new Book({ name: "NodeJS : A Guide" });
-
-  //   NodeJsGuide.save((err, result) => {
-  //     if (err) console.log(err);
-  //     console.log(result);
-  //   });
-
-  //   Book.find((err, document) => {
-  //     console.log(document);
-  //   });
-  // } catch (e) {
-  //   console.log("\n\nCatching Error\n");
-  //   console.log(e);
-  // } finally {
-  //   mongoose.connection.close();
-  // }
   (async () => {
     let Client;
     try {
