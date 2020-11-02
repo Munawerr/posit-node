@@ -2,18 +2,17 @@
 
 This API is created to be used as a prototype
 
-### Hi there, I'm Munawer 👋
+### Hi there, I'm Munawer working at Queper Technologies 👋
 
-[![Website](https://img.shields.io/website?label=codeSTACKr.com&style=for-the-badge&url=https%3A%2F%2Fcodestackr.com)](https://codestackr.com)
+[![Website](https://img.shields.io/website?label=LinkedIn/Munawer&style=for-the-badge&url=https%3A%2F%2Fcodestackr.com)](https://codestackr.com)
 [![Twitter Follow](https://img.shields.io/twitter/follow/MunawerAnwar?color=1DA1F2&logo=twitter&style=for-the-badge)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FcodeSTACKr&screen_name=MunawerAnwar)
 
-## I'm a Husband, Father, Developer, and Teacher!!
+## My goal is be a FullStack Developer!!
 
-- 🔭 I just launched my first course: [Become A VS Code SuperHero!][course]!
 - 🌱 I’m currently learning everything 🤣
-- 👯 I’m looking to collaborate with other content creators
-- 🥅 2020 Goals: Contribute more to Open Source projects
-- ⚡ Fun fact: I love to draw and play guitar / drums
+- 👯 I’m looking to
+- 🥅 2020 Goals: Learn, Learn & Learn
+- ⚡ Fun fact: I also like to make animated gifs
 
 ### Spotify Playing 🎧
 
