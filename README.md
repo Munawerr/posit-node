@@ -1,2 +1,2 @@
 # posit-node
-For practice purpose
+ This API is created to be used as a prototype
