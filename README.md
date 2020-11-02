@@ -13,10 +13,6 @@ This API is created to be used as a prototype
 - 🥅 2020 Goals: Learn, Learn & Learn
 - ⚡ Fun fact: I like to make animated gifs
 
-### Spotify Playing 🎧
-
-[<img src="https://now-playing-codestackr.vercel.app/api/spotify-playing" alt="codeSTACKr Spotify Playing" width="350" />](https://open.spotify.com/user/swyqyimdc12jajde4vpwd2x1b)
-
 ### Connect with me:
 
 [<img align="left" alt="codeSTACKr.com" width="22px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://quepertechnologies.com/)
