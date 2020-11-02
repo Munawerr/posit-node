@@ -10,7 +10,6 @@ This API is created to be used as a prototype
 ## My goal is be a FullStack Developer!!
 
 - 🌱 I’m currently learning everything 🤣
-- 👯 I’m looking to
 - 🥅 2020 Goals: Learn, Learn & Learn
 - ⚡ Fun fact: I also like to make animated gifs
 
