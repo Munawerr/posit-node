@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   res.send("hello world!!!!!!!");
 });
 
-router.get("/api/restaurants", async (req, res) => {
+router.get("/api/restaurants", (req, res) => {
   // try {
   //   mongoose.connect(process.env.mongoCredi, {
   //     useNewUrlParser: true,
@@ -52,33 +52,36 @@ router.get("/api/restaurants", async (req, res) => {
   // } finally {
   //   mongoose.connection.close();
   // }
+  (async () => {
+    let testClient;
+    try {
+      testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+        connectTimeoutMS: 200,
+        retryWrites: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 
-  let testClient;
-  try {
-    testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-      connectTimeoutMS: 200,
-      retryWrites: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+      const dataBase = testClient.db("sample_restaurants");
 
-    const dataBase = testClient.db("sample_restaurants");
+      const Restaurants = dataBase.collection("restaurants");
 
-    const Restaurants = dataBase.collection("restaurants");
-
-    const restaurant = await Restaurants.find(
-      {
-        borough: "Brooklyn",
-        cuisine: "American",
-      },
-      { limit: 5 }
-    ).toArray();
-    res.send(restaurant);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    testClient.close();
-  }
+      const restaurant = await Restaurants.find(
+        {
+          borough: "Brooklyn",
+          cuisine: "American",
+        },
+        { limit: 5 }
+      ).toArray();
+      res.send(restaurant);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      testClient.close();
+    }
+  })().catch(error, () => {
+    res.send(`An Error Occured \n\n${error}`);
+  });
 });
 
 router.get("/api/restaurants/:rId", (req, resp) => {
