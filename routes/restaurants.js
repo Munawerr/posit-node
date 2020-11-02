@@ -20,59 +20,65 @@ router.get("/", (req, res) => {
 });
 
 router.get("/api/restaurants", async (req, res) => {
-  mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    retryWrites: true,
-    connectTimeoutMS: 200,
-  });
-  const client = mongoose.connection;
-  mongoose.connection.once("open", () => {
-    console.log("MongoDB Connected");
-  });
-  mongoose.connection.on("error", (err) => {
-    console.log("MongoDB connection error: ", err);
-  });
-  const dataBase = client.db("sample_restaurants");
-
-  const Restaurants = dataBase.collection("restaurants");
-
-  const restaurant = await Restaurants.find(
-    {
-      borough: "Brooklyn",
-      cuisine: "American",
-    },
-    { limit: 5 }
-  ).toArray();
-  res.send(restaurant);
-  client.close();
-
-  // let testClient;
   // try {
-  //   testClient = await MongoClient.connect(process.env.MONGODB_URI, {
-  //     connectTimeoutMS: 200,
-  //     retryWrites: true,
+  //   mongoose.connect(process.env.mongoCredi, {
   //     useNewUrlParser: true,
   //     useUnifiedTopology: true,
+  //     retryWrites: true,
+  //     connectTimeoutMS: 200,
   //   });
 
-  //   const dataBase = testClient.db("sample_restaurants");
+  //   const Schema = mongoose.Schema;
+  //   const BookSchema = new Schema({
+  //     name: String,
+  //   });
 
-  //   const Restaurants = dataBase.collection("restaurants");
+  //   const Model = mongoose.model;
+  //   const Book = Model("Books", BookSchema);
 
-  //   const restaurant = await Restaurants.find(
-  //     {
-  //       borough: "Brooklyn",
-  //       cuisine: "American",
-  //     },
-  //     { limit: 5 }
-  //   ).toArray();
-  //   res.send(restaurant);
+  //   const NodeJsGuide = new Book({ name: "NodeJS : A Guide" });
+
+  //   NodeJsGuide.save((err, result) => {
+  //     if (err) console.log(err);
+  //     console.log(result);
+  //   });
+
+  //   Book.find((err, document) => {
+  //     console.log(document);
+  //   });
   // } catch (e) {
-  //   console.error(e);
+  //   console.log("\n\nCatching Error\n");
+  //   console.log(e);
   // } finally {
-  //   testClient.close();
+  //   mongoose.connection.close();
   // }
+
+  let testClient;
+  try {
+    testClient = await MongoClient.connect(process.env.MONGODB_URI, {
+      connectTimeoutMS: 200,
+      retryWrites: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    const dataBase = testClient.db("sample_restaurants");
+
+    const Restaurants = dataBase.collection("restaurants");
+
+    const restaurant = await Restaurants.find(
+      {
+        borough: "Brooklyn",
+        cuisine: "American",
+      },
+      { limit: 5 }
+    ).toArray();
+    res.send(restaurant);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    testClient.close();
+  }
 });
 
 router.get("/api/restaurants/:rId", (req, resp) => {
