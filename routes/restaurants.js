@@ -70,8 +70,7 @@ router.get("/api/restaurants", (req, res) => {
       {
         borough: "Brooklyn",
         cuisine: "American",
-      },
-      { limit: 5 }
+      }
     ).toArray();
     res.send(restaurant);
   } catch (e) {
