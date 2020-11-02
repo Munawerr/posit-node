@@ -72,7 +72,7 @@ router.get("/api/restaurants/:rId", (req, resp) => {
       Client.close();
     }
   })().catch((error) => {
-    res.send(`An Error Occured \n\n${error}`);
+    resp.send(`An Error Occured \n\n${error}`);
   });
 });
 
