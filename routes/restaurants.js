@@ -54,6 +54,7 @@ router.get("/api/restaurants", (req, res) => {
   // }
   // (async () => {
   let testClient;
+  console.log("is it is running");
   try {
     testClient = MongoClient.connect(process.env.MONGODB_URI, {
       connectTimeoutMS: 200,
@@ -62,20 +63,22 @@ router.get("/api/restaurants", (req, res) => {
       useUnifiedTopology: true,
     });
 
+    console.log("is try running");
+
     const dataBase = testClient.db("sample_restaurants");
 
     const Restaurants = dataBase.collection("restaurants");
 
-    const restaurant = Restaurants.find(
-      {
-        borough: "Brooklyn",
-        cuisine: "American",
-      }
-    ).toArray();
+    const restaurant = Restaurants.find({
+      borough: "Brooklyn",
+      cuisine: "American",
+    }).toArray();
     res.send(restaurant);
   } catch (e) {
+    console.log("is error!");
     console.error(e);
   } finally {
+    console.log("is finally running");
     testClient.close();
   }
   // })().catch(error, () => {
