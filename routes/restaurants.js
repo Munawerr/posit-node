@@ -50,12 +50,12 @@ router.get("/api/restaurants", (req, res) => {
       const resarr = JSON.stringify(restaurant);
 
 
-      const test = "test";
+      // const test = "test";
 
 
 
 
-      res.send(test);
+      res.send(resarr);
     } catch (e) {
       console.error(e);
     } finally {
