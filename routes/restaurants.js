@@ -30,7 +30,7 @@ router.get("/api/restaurants", (req, res) => {
   (async () => {
     let Client;
     try {
-      Client = await MongoClient.connect(process.env.MONGODB_URI, {
+      Client = await MongoClient.connect(process.env.MONGODB_URI || mongoCredi, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -50,9 +50,12 @@ router.get("/api/restaurants", (req, res) => {
       const resarr = JSON.stringify(restaurant);
 
 
+      const test = "test";
 
 
-      res.send(resarr);
+
+
+      res.send(test);
     } catch (e) {
       console.error(e);
     } finally {
