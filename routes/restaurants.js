@@ -29,8 +29,9 @@ router.get("/", (req, res) => {
 router.get("/api/restaurants", (req, res) => {
   (async () => {
     let Client;
+    const URI = process.env.MONGODB_URI || process.env.mongoCredi;
     try {
-      Client = await MongoClient.connect(process.env.MONGODB_URI || mongoCredi, {
+      Client = await MongoClient.connect(URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -49,16 +50,13 @@ router.get("/api/restaurants", (req, res) => {
 
       const resarr = JSON.stringify(restaurant);
 
-
       // const test = "test";
-
-
-
 
       res.send(resarr);
     } catch (e) {
       console.error(e);
     } finally {
+      console.log("is it running");
       Client.close();
     }
   })().catch((error) => {
