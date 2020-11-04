@@ -39,17 +39,11 @@ router.get("/api/restaurants", (req, res) => {
         // reconnectInterval: 500, // in ms
       });
 
-      const dataBase = Client.db("sample_restaurants");
+      const dataBase = Client.db("FoodCityDB");
 
       const Restaurants = dataBase.collection("restaurants");
 
-      const restaurant = await Restaurants.find(
-        {
-          borough: "Brooklyn",
-          cuisine: "American",
-        },
-        { limit: 100 }
-      ).toArray();
+      const restaurant = await Restaurants.find({}, { limit: 100 }).toArray();
 
       const test = "test";
       console.log("\n\n\n");
