@@ -48,11 +48,11 @@ router.get("/api/restaurants", (req, res) => {
         { limit: 5 }
       ).toArray();
 
-      const resarr = JSON.stringify(restaurant);
+      // const resarr = JSON.stringify(restaurant);
 
       // const test = "test";
 
-      res.send(resarr);
+      res.send(restaurant);
     } catch (e) {
       console.error(e);
     } finally {
