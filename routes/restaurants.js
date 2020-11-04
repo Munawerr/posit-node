@@ -48,12 +48,15 @@ router.get("/api/restaurants", (req, res) => {
           borough: "Brooklyn",
           cuisine: "American",
         },
-        { limit: 5 }
+        { limit: 100 }
       ).toArray();
 
+      const db = Client.db("FoodCityDB");
+      const rest = db.collection("restaurants");
+      rest.insertMany(restaurant);
       // const test = "test";
-      console.log("\n\n\n");
-      console.log(restaurant);
+      // console.log("\n\n\n");
+      // console.log(restaurant);
 
       res.send(restaurant);
     } catch (e) {
