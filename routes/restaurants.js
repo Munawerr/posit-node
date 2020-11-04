@@ -34,6 +34,9 @@ router.get("/api/restaurants", (req, res) => {
       Client = await MongoClient.connect(URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useCreateIndex: true,
+        reconnectTries: 30,
+        reconnectInterval: 500, // in ms
       });
 
       const dataBase = Client.db("sample_restaurants");
@@ -46,11 +49,11 @@ router.get("/api/restaurants", (req, res) => {
           cuisine: "American",
         },
         { limit: 5 }
-      ).toArray();
-
-      // const resarr = JSON.stringify(restaurant);
+      );
 
       // const test = "test";
+      console.log("\n\n\n");
+      console.log(restaurant);
 
       res.send(restaurant);
     } catch (e) {
