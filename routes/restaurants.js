@@ -49,7 +49,7 @@ router.get("/api/restaurants", (req, res) => {
           cuisine: "American",
         },
         { limit: 5 }
-      );
+      ).toArray();
 
       // const test = "test";
       console.log("\n\n\n");
